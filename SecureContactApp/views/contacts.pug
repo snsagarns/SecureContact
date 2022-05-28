@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    table#tableVal.table.align-middle.mb-0.bg-white.table-hover.clickable.table-light
+      thead.bg-light
+        tr
+          th Name|Email
+          th Address
+          th Contact Option
+          th Phone Number
+          th GeoLocation
+          th Actions
+      tbody
+      each cont in contact
+        tr
+          td
+            .d-flex.align-items-center
+              img.rounded-circle(src=`https://eu.ui-avatars.com/api/?name=${cont.firstName[0]}+${cont.lastName[0]}&size=250` alt='' style='width: 45px; height: 45px')
+              .ms-3
+                p.fw-bold.mb-1 #{cont.prefix + " " + cont.firstName + " " + cont.lastName}
+                p.text-muted.mb-0 #{cont.email}
+          td
+            p.fw-normal.mb-1 #{cont.street}
+            p.text-muted.mb-0 #{cont.city + " " + cont.state + " " + cont.zip }
+          td
+            p.badge.badge-success.rounded-pill.d Email: #{cont.contactByEmail}
+            p.badge.badge-danger.rounded-pill.d Phone: #{cont.contactByPhone}
+            p.text-muted.mb-0.badge.badge-warning.rounded-pill.d Mail: #{cont.contactByMail}
+          td 
+            p #{cont.phone}
+          td
+           p#lat #{cont.lat}, #{cont.lng}
+          td
+            a.button.btn.btn-link.btn-sm.btn-rounded( href = `/contacts/update/${cont._id}`)
+              | Edit
+            a.button.btn.btn-link.btn-sm.btn-rounded( href = `/contacts/delete/${cont._id}`)
+              | Delete
+
+    #contactmap
+        
+    script(src='javascripts/general.js')

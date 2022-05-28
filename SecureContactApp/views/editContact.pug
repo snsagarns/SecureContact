@@ -1,0 +1,78 @@
+extends layout 
+
+block content
+  .container.py-5.h-200-lg.border-s
+    form#updateForm(method="POST" action=`/contacts/update/${contact._id}`)
+      .form-row
+        .form-check.form-check-inline.col-md-1
+          input.form-check-input(type='radio', name='prefix', value='Mr.', id="radio1")
+          label.form-check-label(for='inlineCheckbox1', checked='checked') Mr.
+        .form-check.form-check-inline.col-md-1
+          input.form-check-input(type='radio', name='prefix', value='Mrs.', id="radio2")
+          label.form-check-label(for='inlineCheckbox2') Mrs.
+        .form-check.form-check-inline.col-md-1
+          input.form-check-input(type='radio', name='prefix', value='Ms.', id="radio3")
+          label.form-check-label(for='inlineCheckbox2') Ms.
+        .form-check.form-check-inline.col-md-1
+          input.form-check-input(type='radio', name='prefix', value='Dr.', id="radio4")
+          label.form-check-label(for='inlineCheckbox2') Dr.
+      .form-row
+        .form-group.col-md-6
+          label(for='first') First Name:
+          input#first.form-control( name='firstName', type='text', value =`${contact.firstName}`,  placeholder= `${contact.firstName}`)
+        .form-group.col-md-6
+          label(for='last') Last Name
+          input#last.form-control(name='lastName', type='text', value =  `${contact.lastName}`, placeholder= `${contact.lastName}`)
+      .form-row
+        .form-group.col-md-5
+          label(for='inputAddress') Street
+          input#inputAddress.form-control(type='text', name='street', value = `${contact.street}`, placeholder= `${contact.street}`)
+        .form-group.col-md-4
+          label(for='inputCity') City
+          input#inputCity.form-control(type='text', name='city', value = `${contact.city}`, placeholder= `${contact.city}`)
+        .form-group.col-md-3
+          label(for='inputState') State
+          select#inputState.form-control(name='state')
+            option(selected='') #{contact.state}
+            option(value='CT') CT
+            option(value='NJ') NJ
+            option(value='NY') NY
+            option(value='PA') PA
+      .form-row
+        .form-group.col-md-6
+          label(for='inputZip') Zip
+          input#inputZip.form-control(type='text', name='zip', value =`${contact.zip}`,  placeholder= `${contact.zip}`)
+        .form-group.col-md-6
+          label(for='phoneNum') Contact Number
+          input#inputPhone.form-control(type='text', name='phone', value = `${contact.phone}`, placeholder= `${contact.phone}`)
+
+      // Email
+      .form-row
+        .form-group.col-md-6
+          label(for='email') Email
+          input#inputEmail.form-control(type='email', name='email',value = `${contact.email}`, placeholder= `${contact.email}`)
+      // Prefix
+      .form-row
+        span.col-md-4 How may we contact you?
+        .form-check.form-check-inline.col-md-2
+          input#phonecheck.form-check-input(type='checkbox', name='isPhone', value=`Phone`)
+          label.form-check-label(for='inlineCheckbox1') Phone
+        .form-check.form-check-inline.col-md-2
+          input#mailcheck.form-check-input(type='checkbox', name='isMail',  value=`Mail`)
+          label.form-check-label(for='inlineCheckbox2') Mail
+        .form-check.form-check-inline.col-md-2
+          input#emailcheck.form-check-input(type='checkbox', name='isEmail',  value=`Email`)
+          label.form-check-label(for='inlineCheckbox2') Email
+        .form-check.form-check-inline.col-md-1
+          input#allcheck.form-check-input(type='checkbox', name='isAny',  value =`Any`)
+          label.form-check-label(for='inlineCheckbox2') Any
+          input#custId(type='hidden', name='id')
+
+      br
+      button#saveButton.btn.btn-primary() Update
+
+
+
+                
+            
+

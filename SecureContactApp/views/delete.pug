@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    .containter.text-center
+        .jumbotron
+            h1.display-4 You are about to delete this contact
+            p.lead Are you sure you wanna delete??
+            .my-5 
+    
+        button.btn.btn-dark(type='button').text-warning               
+               p.m-4 Name: #{post.prefix} #{post.firstName} #{post.lastName}
+                
+                p.m-4 Address: #{post.street}, #{post.city}, #{post.state}, #{post.zip}
+                
+                p.m-4 Contact by Phone: #{post.contactByPhone ? 'yes' : 'no'}
+                
+                p.m-4 Contact by Mail: #{post.contactByMail ? 'yes' : 'no'}
+                
+                p.m-4 Contact by E-mail: #{post.contactByEmail ? 'yes' : 'no'} 
+        
+        form(action=`/contacts/delete/${post._id}` method='post')
+            button.btn.btn-danger(name='delete' value='delete') Delete
+  
+
+    script.
+        $('#main-nav').append( "<li class = 'nav-item'> <a class = 'nav-link' id = 'login'> Login </li> ")
+        $('#login').attr('href', 'login')
